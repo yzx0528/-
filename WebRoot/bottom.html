@@ -1,0 +1,61 @@
+<%@ page contentType="text/html;charset=utf-8" %>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<%!
+	int visitcount = 1;
+	synchronized void add(){
+		visitcount++;
+	}
+%>
+<%
+	add();
+%>
+	<tr  bgcolor="b7ddc8">
+		<td class="two" colspan=6>当前访问次数：<%=visitcount%></td>
+	</tr>
+	<tr  bgcolor="d9ebb1">
+		<td colspan=6>
+		<%
+			if(application.getAttribute("count")==null){
+				application.setAttribute("count","1");
+				out.println("欢迎，您是第1位访客！");
+			}
+			else{
+				int i=Integer.parseInt((String)application.getAttribute("count"));
+				i++;
+				application.setAttribute("count",String.valueOf(i));
+				out.println("欢迎，您是第"+i+"位访客！");
+			}
+		%>
+		</td>
+	</tr>
+	<tr bgcolor="fffbb2">
+		<td colspan=6>
+		<%
+			if(application.getAttribute("num")==null){
+				application.setAttribute("num","1");
+				
+			}
+			else{
+				if(session.isNew())
+				{
+					int j=Integer.parseInt((String)application.getAttribute("num"));
+					j++;
+					application.setAttribute("num",String.valueOf(j));
+					out.println("欢迎，您是第"+j+"位访客！");
+				}
+			}
+		%>
+		
+		</td>
+	</tr>
+	<tr bgcolor="fffbb2">
+		<td colspan=6>
+		Copyright ? 2009-2019,版权所有软件工程<br/>
+		网络文化经营许可证：网文[2019]0123-002号<br/>
+		客服电话：0533-1234567<br/>
+		如有意见或建议，请发送
+		<a href="mailto:945830674@qq.com?subject=Hello%20again">邮件</a><br/>
+		技术支持：理工大学<br/>
+		</td>
+	</tr>
